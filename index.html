@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Subtitle AI Dashboard - Premium</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <style>
+    body { 
+      font-family: 'Prompt', sans-serif; 
+      background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      min-height: 100vh;
+    }
+    
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.4); }
+      50% { box-shadow: 0 0 40px rgba(99, 102, 241, 0.8); }
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes shimmer {
+      0% { background-position: -1000px 0; }
+      100% { background-position: 1000px 0; }
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    }
+
+    .glass-card-dark {
+      background: rgba(17, 24, 39, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .floating {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .pulse-glow {
+      animation: pulse-glow 2s ease-in-out infinite;
+    }
+
+    .slide-up {
+      animation: slideUp 0.6s ease-out;
+    }
+
+    .scale-in {
+      animation: scaleIn 0.4s ease-out;
+    }
+
+    .shimmer {
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      background-size: 1000px 100%;
+      animation: shimmer 2s infinite;
+    }
+
+    .hover-lift {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .hover-lift:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.5);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+      transform: rotate(45deg);
+      transition: all 0.5s;
+    }
+
+    .btn-primary:hover::after {
+      left: 100%;
+    }
+
+    .drop-zone {
+      background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+      border: 3px dashed rgba(255,255,255,0.5);
+      transition: all 0.3s ease;
+    }
+
+    .drop-zone:hover, .drop-zone.drag-over {
+      border-color: #fff;
+      background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+      transform: scale(1.02);
+    }
+
+    .progress-bar {
+      background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+      background-size: 200% 100%;
+      animation: shimmer 2s infinite;
+    }
+
+    .success-checkmark {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: block;
+      stroke-width: 2;
+      stroke: #fff;
+      stroke-miterlimit: 10;
+      box-shadow: inset 0px 0px 0px #7ac142;
+      animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+    }
+
+    .success-checkmark__check {
+      transform-origin: 50% 50%;
+      stroke-dasharray: 48;
+      stroke-dashoffset: 48;
+      animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+    }
+
+    @keyframes stroke {
+      100% { stroke-dashoffset: 0; }
+    }
+
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.5);
+      animation: particle-float 20s infinite;
+    }
+
+    @keyframes particle-float {
+      0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-100vh) translateX(50px); }
+    }
+  </style>
+</head>
+<body class="flex flex-col relative overflow-x-hidden">
+  <!-- Animated Background Particles -->
+  <div id="particles" class="absolute inset-0 pointer-events-none overflow-hidden"></div>
+
+  <!-- Header -->
+  <header class="glass-card-dark relative z-10 slide-up">
+    <div class="max-w-5xl mx-auto px-4 py-6 flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <div class="w-12 h-12 bg-gradient-to-br from-indigo-400 to-purple-600 rounded-2xl flex items-center justify-center text-white font-bold text-2xl shadow-lg pulse-glow">
+          S
+        </div>
+        <div>
+          <h1 class="text-2xl font-bold text-white">Subtitle AI Dashboard</h1>
+          <p class="text-indigo-200 text-sm">Professional Speech-to-Text Translation</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <div class="bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20">
+          <span class="text-white text-sm flex items-center gap-2">
+            <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+            v2.1 Multi-Language
+          </span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-1 max-w-5xl mx-auto w-full px-4 py-12 relative z-10">
+    <div class="glass-card rounded-3xl shadow-2xl p-8 md:p-12 hover-lift slide-up" style="animation-delay: 0.1s">
+      
+      <!-- Title Section -->
+      <div class="text-center mb-10">
+        <h2 class="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-3">
+          อัปโหลดไฟล์เสียง/วิดีโอ
+        </h2>
+        <p class="text-gray-600 text-lg">แปลงเสียงเป็นซับไทยอัตโนมัติ • รองรับ 100+ ภาษา</p>
+      </div>
+
+      <!-- Language Selector -->
+      <div class="mb-6 slide-up" style="animation-delay: 0.15s">
+        <label class="block text-gray-700 font-semibold mb-3 text-lg">🌍 เลือกภาษาต้นฉบับ</label>
+        <div class="relative">
+          <select id="lang-select" class="w-full p-4 bg-white border-2 border-gray-200 rounded-2xl text-gray-700 font-medium focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 transition cursor-pointer appearance-none">
+            <option value="auto"> ตรวจจับอัตโนมัติ (แนะนำ • แม่นยำสุด)</option>
+            <option value="en">🇬🇧 อังกฤษ (English)</option>
+            <option value="ko">🇰🇷 เกาหลี (Korean)</option>
+            <option value="ja">🇯🇵 ญี่ปุ่น (Japanese)</option>
+            <option value="zh">🇨🇳 จีน (Chinese)</option>
+            <option value="fr">🇫🇷 ฝรั่งเศส (French)</option>
+            <option value="de">🇩🇪 เยอรมัน (German)</option>
+            <option value="es">🇪🇸 สเปน (Spanish)</option>
+            <option value="th">🇹🇭 ไทย (ถอดความอย่างเดียว ไม่แปล)</option>
+          </select>
+          <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-500">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </div>
+        </div>
+        <p class="text-xs text-gray-500 mt-2">💡 หากไม่แน่ใจภาษา ให้เลือก "ตรวจจับอัตโนมัติ" AI จะวิเคราะห์เสียงให้เอง</p>
+      </div>
+
+      <!-- Upload Area -->
+      <div id="drop-zone" class="drop-zone rounded-3xl p-12 text-center relative overflow-hidden cursor-pointer mb-8">
+        <input type="file" id="file-input" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-20" accept=".mp3,.wav,.mp4,.mkv,.flac,.m4a,.ogg,.webm">
+        
+        <!-- Shimmer Effect -->
+        <div class="shimmer absolute inset-0 pointer-events-none"></div>
+
+        <div id="upload-placeholder" class="relative z-10 floating">
+          <div class="w-24 h-24 mx-auto mb-6 bg-gradient-to-br from-indigo-400 to-purple-600 rounded-3xl flex items-center justify-center shadow-xl">
+            <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m0 0l3-3"/>
+            </svg>
+          </div>
+          <p class="text-2xl font-bold text-white mb-2">ลากไฟล์มาวางที่นี่</p>
+          <p class="text-white/80 mb-4">หรือ <span class="text-white font-semibold underline">คลิกเพื่อเลือกไฟล์</span></p>
+          <p class="text-sm text-white/60 bg-white/10 inline-block px-4 py-2 rounded-full">ขนาดแนะนำ: &lt; 500MB</p>
+        </div>
+
+        <div id="file-info" class="hidden relative z-10 scale-in">
+          <div class="flex items-center justify-center gap-4 text-white">
+            <div class="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-600 rounded-2xl flex items-center justify-center shadow-lg">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+              </svg>
+            </div>
+            <div class="text-left">
+              <p id="file-name" class="text-xl font-bold"></p>
+              <p id="file-size" class="text-white/70"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Button -->
+      <button id="process-btn" class="btn-primary w-full text-white font-bold py-5 px-8 rounded-2xl text-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-3 shadow-xl mb-8" disabled>
+        <svg id="btn-icon" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+        </svg>
+        <span id="btn-text">เริ่มสร้าง Subtitle</span>
+      </button>
+
+      <!-- Status Area -->
+      <div id="status-area" class="hidden mb-8 scale-in">
+        <div class="glass-card-dark rounded-2xl p-6 border border-white/20">
+          <div class="flex items-center gap-4 mb-4">
+            <div id="status-spinner" class="relative">
+              <div class="w-8 h-8 border-4 border-indigo-400 border-t-transparent rounded-full animate-spin"></div>
+              <div class="absolute inset-0 w-8 h-8 border-4 border-purple-400 border-t-transparent rounded-full animate-spin" style="animation-direction: reverse; animation-duration: 1.5s"></div>
+            </div>
+            <p id="status-text" class="text-white text-lg font-semibold"></p>
+          </div>
+          
+          <!-- Progress Bar -->
+          <div class="w-full bg-white/10 rounded-full h-3 overflow-hidden">
+            <div id="progress-fill" class="progress-bar h-full rounded-full transition-all duration-500" style="width: 0%"></div>
+          </div>
+          <p id="progress-text" class="text-white/60 text-sm mt-2 text-center">0%</p>
+        </div>
+      </div>
+
+      <!-- Success Download Area -->
+      <div id="download-area" class="hidden scale-in">
+        <div class="bg-gradient-to-r from-green-500 to-emerald-600 rounded-2xl p-8 shadow-2xl border border-white/20">
+          <div class="flex items-center justify-between flex-wrap gap-4">
+            <div class="flex items-center gap-5">
+              <div class="relative">
+                <svg class="success-checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                  <circle class="success-checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+                  <path class="success-checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                </svg>
+              </div>
+              <div>
+                <p class="text-2xl font-bold text-white mb-1">สร้างเสร็จเรียบร้อย!</p>
+                <p class="text-green-100" id="srt-info"></p>
+              </div>
+            </div>
+            <a id="download-btn" href="#" class="bg-white text-emerald-600 hover:bg-green-50 px-8 py-4 rounded-xl font-bold transition-all transform hover:scale-105 shadow-xl flex items-center gap-3">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m0 0v6"/>
+              </svg>
+              ดาวน์โหลด .srt
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Features Section -->
+    <div class="grid md:grid-cols-3 gap-6 mt-8 slide-up" style="animation-delay: 0.2s">
+      <div class="glass-card rounded-2xl p-6 text-center hover-lift">
+        <div class="w-14 h-14 bg-gradient-to-br from-blue-400 to-indigo-600 rounded-2xl flex items-center justify-center text-white text-2xl mx-auto mb-4 shadow-lg">⚡</div>
+        <h3 class="text-gray-800 font-bold text-lg mb-2">รวดเร็ว</h3>
+        <p class="text-gray-600 text-sm">ประมวลผลด้วย GPU และ AI ระดับโลก</p>
+      </div>
+      <div class="glass-card rounded-2xl p-6 text-center hover-lift">
+        <div class="w-14 h-14 bg-gradient-to-br from-purple-400 to-pink-600 rounded-2xl flex items-center justify-center text-white text-2xl mx-auto mb-4 shadow-lg">🎯</div>
+        <h3 class="text-gray-800 font-bold text-lg mb-2">แม่นยำ</h3>
+        <p class="text-gray-600 text-sm">ความถูกต้องสูงด้วย Whisper AI</p>
+      </div>
+      <div class="glass-card rounded-2xl p-6 text-center hover-lift">
+        <div class="w-14 h-14 bg-gradient-to-br from-green-400 to-emerald-600 rounded-2xl flex items-center justify-center text-white text-2xl mx-auto mb-4 shadow-lg">🔒</div>
+        <h3 class="text-gray-800 font-bold text-lg mb-2">ปลอดภัย</h3>
+        <p class="text-gray-600 text-sm">ไฟล์ถูกลบอัตโนมัติหลังประมวลผล</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="text-center py-8 text-white/60 text-sm relative z-10">
+    <p>Powered by Whisper AI • FastAPI • Tailwind CSS</p>
+    <p class="mt-2">© 2026 Dev By TonLikeIT ❤️ Subtitle AI Dashboard. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Create floating particles
+    function createParticles() {
+      const container = document.getElementById('particles');
+      for (let i = 0; i < 20; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.width = Math.random() * 10 + 5 + 'px';
+        particle.style.height = particle.style.width;
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 20 + 's';
+        particle.style.animationDuration = (Math.random() * 20 + 10) + 's';
+        container.appendChild(particle);
+      }
+    }
+    createParticles();
+
+    // DOM Elements
+    const fileInput = document.getElementById('file-input');
+    const dropZone = document.getElementById('drop-zone');
+    const uploadPlaceholder = document.getElementById('upload-placeholder');
+    const fileInfo = document.getElementById('file-info');
+    const fileName = document.getElementById('file-name');
+    const fileSize = document.getElementById('file-size');
+    const processBtn = document.getElementById('process-btn');
+    const btnText = document.getElementById('btn-text');
+    const btnIcon = document.getElementById('btn-icon');
+    const statusArea = document.getElementById('status-area');
+    const statusSpinner = document.getElementById('status-spinner');
+    const statusText = document.getElementById('status-text');
+    const progressFill = document.getElementById('progress-fill');
+    const progressText = document.getElementById('progress-text');
+    const downloadArea = document.getElementById('download-area');
+    const downloadBtn = document.getElementById('download-btn');
+    const srtInfo = document.getElementById('srt-info');
+    const langSelect = document.getElementById('lang-select');
+
+    let selectedFile = null;
+
+    fileInput.addEventListener('change', (e) => handleFile(e.target.files[0]));
+
+    dropZone.addEventListener('dragover', (e) => { 
+      e.preventDefault(); 
+      dropZone.classList.add('drag-over'); 
+    });
+    
+    dropZone.addEventListener('dragleave', () => {
+      dropZone.classList.remove('drag-over');
+    });
+    
+    dropZone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropZone.classList.remove('drag-over');
+      if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
+    });
+
+    function handleFile(file) {
+      if (!file) return;
+      selectedFile = file;
+      fileName.textContent = file.name;
+      fileSize.textContent = `${(file.size / 1024 / 1024).toFixed(2)} MB`;
+      uploadPlaceholder.classList.add('hidden');
+      fileInfo.classList.remove('hidden');
+      processBtn.disabled = false;
+      downloadArea.classList.add('hidden');
+      statusArea.classList.add('hidden');
+    }
+
+    function updateProgress(percent) {
+      progressFill.style.width = percent + '%';
+      progressText.textContent = Math.round(percent) + '%';
+    }
+
+    processBtn.addEventListener('click', async () => {
+      if (!selectedFile) return;
+      
+      processBtn.disabled = true;
+      btnText.textContent = 'กำลังประมวลผล...';
+      btnIcon.classList.add('animate-spin');
+      statusArea.classList.remove('hidden');
+      downloadArea.classList.add('hidden');
+      updateProgress(0);
+
+      const formData = new FormData();
+      formData.append('file', selectedFile);
+      formData.append('source_lang', langSelect.value); // ✅ เพิ่มภาษาที่เลือก
+
+      try {
+        const API_URL = `${window.location.origin}/transcribe`;
+        const langName = langSelect.selectedOptions[0].text;
+        statusText.textContent = ` กำลังถอดความ & แปลภาษา (${langName} → ไทย)...`;
+        updateProgress(15);
+
+        const response = await fetch(API_URL, { method: 'POST', body: formData });
+        
+        if (!response.ok) {
+          const errData = await response.json().catch(() => ({ detail: response.statusText }));
+          throw new Error(errData.detail || `HTTP ${response.status}`);
+        }
+
+        updateProgress(90);
+        statusText.textContent = '✅ เสร็จสิ้น! กำลังเตรียมไฟล์...';
+        
+        const blob = await response.blob();
+        const url = URL.createObjectURL(blob);
+        downloadBtn.href = url;
+        downloadBtn.download = selectedFile.name.replace(/\.[^/.]+$/, '') + '_TH.srt';
+        srtInfo.textContent = `${selectedFile.name} • แปลจาก ${langName.split('(')[1]?.replace(')', '') || 'ต้นฉบับ'} เป็นไทย`;
+        
+        updateProgress(100);
+        setTimeout(() => {
+          statusArea.classList.add('hidden');
+          downloadArea.classList.remove('hidden');
+        }, 500);
+
+      } catch (error) {
+        console.error('❌ Fetch Error:', error);
+        statusText.textContent = `❌ ${error.message}`;
+        statusText.classList.add('text-red-400');
+        statusSpinner.classList.add('hidden');
+      } finally {
+        btnText.textContent = 'เริ่มสร้าง Subtitle';
+        btnIcon.classList.remove('animate-spin');
+        processBtn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
