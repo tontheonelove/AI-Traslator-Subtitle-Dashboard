@@ -11,7 +11,7 @@
 ### How to use locally  git clone ....
 
 
-1\. git clone .....   or download zip
+1\. git clone https://github.com/tontheonelove/AI-Traslator-Subtitle-Dashboard.git   or download zip
 
 2\. ดับเบิลคลิก `run.bat` (ครั้งแรกจะลงระบบอัตโนมัติ รอจนขึ้น `Uvicorn running on...`)
 
