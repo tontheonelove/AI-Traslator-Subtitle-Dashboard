@@ -7,6 +7,9 @@
 ## Update version 2.1  (Support Multi lang.) Support MP3, WAV, MP4, MKV 🔥🔥
 
 
+> [!Requirement]
+> need python 3.11 +
+
 
 
 ### How to use locally  git clone ....
