@@ -4,6 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Subtitle AI Dashboard - Premium</title>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            dark: {
+              bg: '#0f172a',
+              card: '#1e293b',
+              text: '#f1f5f9',
+              textMuted: '#94a3b8',
+              border: '#334155'
+            }
+          }
+        }
+      }
+    }
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
@@ -179,6 +197,58 @@
       90% { opacity: 1; }
       100% { transform: translateY(-100vh) translateX(50px); }
     }
+
+        /* Dark Mode Overrides */
+    .dark body {
+      background: linear-gradient(-45deg, #0f172a, #1e293b, #334155, #1e293b) !important;
+    }
+    .dark .glass-card {
+      background: rgba(30, 41, 59, 0.95);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+    .dark .glass-card-dark {
+      background: rgba(15, 23, 42, 0.9);
+      border-color: rgba(255, 255, 255, 0.05);
+    }
+    .dark .drop-zone {
+      background: linear-gradient(135deg, rgba(30,41,59,0.3) 0%, rgba(30,41,59,0.1) 100%);
+      border-color: rgba(255,255,255,0.2);
+    }
+    .dark .drop-zone:hover, 
+    .dark .drop-zone.drag-over {
+      border-color: rgba(129, 140, 248, 0.6);
+      background: linear-gradient(135deg, rgba(30,41,59,0.5) 0%, rgba(30,41,59,0.2) 100%);
+    }
+    .dark #file-name,
+    .dark #file-size,
+    .dark .text-gray-800 {
+      color: #f1f5f9 !important;
+    }
+    .dark .text-gray-600,
+    .dark .text-gray-700,
+    .dark #status-text,
+    .dark #progress-text,
+    .dark #srt-info {
+      color: #94a3b8 !important;
+    }
+    .dark .bg-gray-50 {
+      background: rgba(30, 41, 59, 0.5) !important;
+    }
+    .dark .bg-white {
+      background: rgba(30, 41, 59, 0.8) !important;
+    }
+    .dark .border-gray-200 {
+      border-color: rgba(255, 255, 255, 0.1) !important;
+    }
+    .dark footer p {
+      color: rgba(255, 255, 255, 0.5) !important;
+    }
+    .dark .btn-primary {
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    }
+    .dark .btn-primary:hover {
+      box-shadow: 0 10px 30px rgba(79, 70, 229, 0.4);
+    }
   </style>
 </head>
 <body class="flex flex-col relative overflow-x-hidden">
@@ -193,13 +263,17 @@
           S
         </div>
         <div>
-          <h1 class="text-2xl font-bold text-white">Subtitle AI Dashboard</h1>
-          <p class="text-indigo-200 text-sm">Professional Speech-to-Text Translation</p>
+          <h1 class="text-2xl font-bold text-white dark:text-dark-text">Subtitle AI Dashboard</h1>
+          <p class="text-indigo-200 text-sm dark:text-dark-textMuted">Professional Speech-to-Text Translation</p>
         </div>
       </div>
       <div class="flex items-center gap-3">
+        <!-- Dark Mode Toggle -->
+        <button id="theme-toggle" class="p-2 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 transition-all" title="สลับธีม">
+          <span id="theme-icon" class="text-xl">🌙</span>
+        </button>
         <div class="bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20">
-          <span class="text-white text-sm flex items-center gap-2">
+          <span class="text-white text-sm flex items-center gap-2 dark:text-dark-text">
             <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
             v2.2 (9-5-26) 🚀
           </span>
@@ -380,6 +454,32 @@
         console.log('🔇 Sound disabled:', e);
       }
     }
+
+        // 🌙 Dark Mode Toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    
+    // โหลดธีมจาก localStorage หรือค่าเริ่มต้น
+    const savedTheme = localStorage.getItem('subtitle-theme');
+    if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+      themeIcon.textContent = '☀️';
+    }
+    
+    function toggleTheme() {
+      const isDark = document.documentElement.classList.toggle('dark');
+      themeIcon.textContent = isDark ? '☀️' : '🌙';
+      localStorage.setItem('subtitle-theme', isDark ? 'dark' : 'light');
+      
+      // เปลี่ยนพื้นหลังแบบไดนามิก
+      if (isDark) {
+        document.body.style.background = 'linear-gradient(-45deg, #0f172a, #1e293b, #334155, #1e293b)';
+      } else {
+        document.body.style.background = 'linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab)';
+      }
+    }
+    
+    themeToggle.addEventListener('click', toggleTheme);
     // Create floating particles
     function createParticles() {
       const container = document.getElementById('particles');
