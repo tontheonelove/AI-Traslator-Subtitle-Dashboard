@@ -4,7 +4,9 @@
 
 
 
-### 🚀 Update version 2.1  (Support Multi lang.) Support MP3, WAV, MP4, MKV 🔥
+### 🚀 Update version 2.2  Sound Notification , Toggle Theme 🔥 (9-5-26)
+
+### 🚀 Update version 2.1  (Support Multi lang.) Support MP3, WAV, MP4, MKV 🔥 (8-5-26)
 
 
 > [!IMPORTANT]
