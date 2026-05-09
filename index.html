@@ -179,6 +179,32 @@
       90% { opacity: 1; }
       100% { transform: translateY(-100vh) translateX(50px); }
     }
+
+      /* ✅ แก้ไข Drop Zone Light Mode - ทำให้ข้อความอ่านได้ชัดเจน */
+    .drop-zone p,
+    .drop-zone span,
+    .drop-zone .font-bold,
+    .drop-zone .font-semibold {
+      color: #1f2937 !important; /* gray-800 - สีเทาเข้ม */
+    }
+    
+    .drop-zone .text-white\/80 {
+      color: #4b5563 !important; /* gray-600 */
+    }
+    
+    .drop-zone .text-white\/60 {
+      color: #6b7280 !important; /* gray-500 */
+    }
+    
+    .drop-zone #file-name,
+    .drop-zone #file-size {
+      color: #111827 !important; /* gray-900 - เข้มสุด */
+    }
+    
+    /* ไอคอนยังคงเป็นสีขาวเพื่อความสวยงาม */
+    .drop-zone svg {
+      color: white !important;
+    }
   </style>
 </head>
 <body class="flex flex-col relative overflow-x-hidden">
