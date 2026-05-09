@@ -249,6 +249,61 @@
     .dark .btn-primary:hover {
       box-shadow: 0 10px 30px rgba(79, 70, 229, 0.4);
     }
+        /* ✅ Light Mode Fixes - ทำให้ข้อความอ่านได้ชัดเจน */
+    body:not(.dark) .drop-zone p {
+      color: #1f2937 !important; /* gray-800 */
+    }
+    
+    body:not(.dark) .drop-zone .text-white {
+      color: #1f2937 !important; /* เปลี่ยนข้อความเป็นสีเข้ม */
+    }
+    
+    body:not(.dark) .drop-zone .text-white\/80 {
+      color: #4b5563 !important; /* gray-600 */
+    }
+    
+    body:not(.dark) .drop-zone .text-white\/60 {
+      color: #6b7280 !important; /* gray-500 */
+    }
+    
+    body:not(.dark) .drop-zone .font-bold {
+      color: #111827 !important; /* gray-900 */
+    }
+    
+    body:not(.dark) .drop-zone .font-semibold {
+      color: #374151 !important; /* gray-700 */
+    }
+    
+    body:not(.dark) #file-name,
+    body:not(.dark) #file-size {
+      color: #1f2937 !important; /* gray-800 */
+    }
+    
+    body:not(.dark) .glass-card {
+      background: rgba(255, 255, 255, 0.95);
+    }
+    
+    body:not(.dark) .glass-card-dark {
+      background: rgba(255, 255, 255, 0.85);
+    }
+    
+    body:not(.dark) header {
+      background: rgba(255, 255, 255, 0.9);
+      border-color: rgba(0, 0, 0, 0.1);
+    }
+    
+    body:not(.dark) header h1,
+    body:not(.dark) header p {
+      color: #1f2937 !important;
+    }
+    
+    body:not(.dark) .bg-white\/10 {
+      background: rgba(0, 0, 0, 0.05) !important;
+    }
+    
+    body:not(.dark) .border-white\/20 {
+      border-color: rgba(0, 0, 0, 0.1) !important;
+    }
   </style>
 </head>
 <body class="flex flex-col relative overflow-x-hidden">
