@@ -9,7 +9,8 @@
 
 > [!IMPORTANT]
 > Requirement
-> Python 3.11+ 
+> Python 3.11+
+> Internet
 
 
 
@@ -19,44 +20,44 @@
 1\. git clone https://github.com/tontheonelove/AI-Traslator-Subtitle-Dashboard.git   or download zip
 
 
-2\. ดับเบิลคลิก `run.bat` (ครั้งแรกจะลงระบบอัตโนมัติ รอจนขึ้น `Uvicorn running on...`)
+2\. Double-click `run.bat` (the first time it will install automatically. Wait until `Uvicorn running on...`)
 
 
-3\. เปิดเบราว์เซอร์ พิมพ์ `http://localhost:8000`
+3\. Open your browser and type `http://localhost:8000`
 
 
-4\. ลากไฟล์เสียง/วิดีโอวาง → กด "เริ่มสร้าง Subtitle" → ดาวน์โหลด `.srt`
-
-
-
-\## ⚠️ หมายเหตุสำคัญ
-
-
-\- ต้องต่ออินเทอร์เน็ตตลอดการใช้งาน (ระบบแปลภาษาผ่านออนไลน์)
-
-
-\- การ์ดจอ NVIDIA แนะนำ แต่รันบน CPU ก็ได้ (ช้ากว่าเล็กน้อย)
-
-
-\- ไฟล์จะถูกลบอัตโนมัติหลังประมวลผลเสร็จ ปลอดภัย 100%
+4\. Drag and drop the audio/video file → Click "Start creating subtitles" → Download `.srt`
 
 
 
-
-\## 🛠️ หากติดปัญหา
-
-
-\- หน้าเว็บไม่ขึ้น: ตรวจสอบว่าปิดโปรแกรมอื่นที่ใช้ Port 8000 หรือไม่
+\## ⚠️ Important Note
 
 
-\- ขึ้น Error CUDA: ระบบจะสลับใช้ CPU อัตโนมัติ ไม่ต้องกังวล
+\- An internet connection is required at all times for use (online translation system).
 
 
-\- แปลไม่ออก: ตรวจสอบเน็ต หรือลองไฟล์สั้นๆ (3-5 นาที) ก่อน
+\- An NVIDIA graphics card is recommended, but it can also run on the CPU (slightly slower).
+
+
+\- The files will be automatically deleted after processing is complete. 100% safe.
 
 
 
-📧 ติดต่อผู้พัฒนา: \[ลิงก์เพจ/อีเมล] TonLikeIT. ❤️
+
+\## 🛠️ If you encounter any problems.
+
+
+\- Web page not loading: Check if other programs using Port 8000 are closed.
+
+
+\- CUDA Error: The system will automatically switch CPUs. Don't worry.
+
+
+\- Unable to translate: Check your internet connection or try a shorter file (3-5 minutes) first.
+
+
+
+📧 Contact the developer.: \[[Facebook](https://www.facebook.com/tonlikeit)] TonLikeIT. ❤️
 
 ## License
 
