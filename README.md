@@ -54,6 +54,9 @@
 
 📧 ติดต่อผู้พัฒนา: \[ลิงก์เพจ/อีเมล] TonLikeIT. ❤️
 
+## License
+
+[Apache License 2.0](./LICENSE)
 
 
 
