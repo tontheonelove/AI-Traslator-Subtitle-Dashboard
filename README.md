@@ -14,7 +14,7 @@
 
 
 
-### How to use locally  git clone ....
+### How to use locally  
 
 
 1\. git clone https://github.com/tontheonelove/AI-Traslator-Subtitle-Dashboard.git   or download zip
