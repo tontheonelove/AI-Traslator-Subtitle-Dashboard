@@ -7,8 +7,8 @@
 ## Update version 2.1  (Support Multi lang.) Support MP3, WAV, MP4, MKV 🔥🔥
 
 
-> [!Requirement]
-> need python 3.11 +
+> [!IMPORTANT]
+> Nothing in this repository constitutes investment, legal, tax, or accounting advice. These agents draft analyst work product — models, memos, research notes, reconciliations — for review by a qualified professional. They do not make investment recommendations, execute transactions, bind risk, post to a ledger, or approve onboarding; every output is staged for human sign-off. You are responsible for verifying outputs and for compliance with the laws and regulations that apply to your firm.
 
 
 
