@@ -33,10 +33,7 @@
 
 ### How to update when me update code
 
-```
-git pull
-```
-
+`git pull`
 
 ### ⚠️ Important Note
 
