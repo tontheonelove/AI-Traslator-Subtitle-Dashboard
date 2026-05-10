@@ -1,6 +1,7 @@
 # AI-Traslator-Subtitle-Dashboard
 
-<img width="1569" height="916" alt="image" src="https://github.com/user-attachments/assets/b3e6869b-b152-4c24-9183-b5341945cd67" />
+<img width="1815" height="1228" alt="image" src="https://github.com/user-attachments/assets/6e51c8c7-450a-493e-8eec-7fea113ff36b" />
+
 
 
 
