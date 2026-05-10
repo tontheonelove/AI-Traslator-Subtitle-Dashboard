@@ -40,6 +40,11 @@ async def index():
     with open("index.html", encoding="utf-8") as f:
         return f.read()
 
+
+@app.get("/favicon.ico")
+async def favicon():
+    return FileResponse("favicon.ico", media_type="image/x-icon")
+
 @app.post("/transcribe")
 async def transcribe(
     file: UploadFile = File(...),
