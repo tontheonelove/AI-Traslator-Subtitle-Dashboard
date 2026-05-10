@@ -38,7 +38,7 @@ git pull
 ```
 
 
-\## ⚠️ Important Note
+### ⚠️ Important Note
 
 
 - An internet connection is required at all times for use (online translation system).
@@ -52,7 +52,7 @@ git pull
 
 
 
-\## 🛠️ If you encounter any problems.
+### 🛠️ If you encounter any problems.
 
 
 - Web page not loading: Check if other programs using Port 8000 are closed.
