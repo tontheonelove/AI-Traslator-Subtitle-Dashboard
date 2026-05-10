@@ -41,13 +41,13 @@ git pull
 \## ⚠️ Important Note
 
 
-\- An internet connection is required at all times for use (online translation system).
+- An internet connection is required at all times for use (online translation system).
 
 
-\- An NVIDIA graphics card is recommended, but it can also run on the CPU (slightly slower).
+- An NVIDIA graphics card is recommended, but it can also run on the CPU (slightly slower).
 
 
-\- The files will be automatically deleted after processing is complete. 100% safe.
+- The files will be automatically deleted after processing is complete. 100% safe.
 
 
 
@@ -55,13 +55,13 @@ git pull
 \## 🛠️ If you encounter any problems.
 
 
-\- Web page not loading: Check if other programs using Port 8000 are closed.
+- Web page not loading: Check if other programs using Port 8000 are closed.
 
 
-\- CUDA Error: The system will automatically switch CPUs. Don't worry.
+- CUDA Error: The system will automatically switch CPUs. Don't worry.
 
 
-\- Unable to translate: Check your internet connection or try a shorter file (3-5 minutes) first.
+- Unable to translate: Check your internet connection or try a shorter file (3-5 minutes) first.
 
 
 
