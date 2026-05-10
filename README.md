@@ -19,7 +19,7 @@
 ### How to use locally  
 
 
-1\. git clone https://github.com/tontheonelove/AI-Traslator-Subtitle-Dashboard.git   or download zip
+1\. ```git clone https://github.com/tontheonelove/AI-Traslator-Subtitle-Dashboard.git```   or download zip
 
 
 2\. Double-click `run.bat` (the first time it will install automatically. Wait until `Uvicorn running on...`)
@@ -30,6 +30,12 @@
 
 4\. Drag and drop the audio/video file → Click "Start creating subtitles" → Download `.srt`
 
+
+### How to update when me update code
+
+```
+git pull
+```
 
 
 \## ⚠️ Important Note
