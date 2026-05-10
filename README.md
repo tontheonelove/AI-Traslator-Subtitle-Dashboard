@@ -25,7 +25,7 @@
 2\. Double-click `run.bat` (the first time it will install automatically. Wait until `Uvicorn running on...`)
 
 
-3\. Open your browser and type `http://localhost:8000`
+3\. Open your browser and type `http://localhost:8000` or `127.0.0.1:8000`
 
 
 4\. Drag and drop the audio/video file → Click "Start creating subtitles" → Download `.srt`
