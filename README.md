@@ -33,7 +33,7 @@
 
 ### How to update when me update code
 
-`git pull`
+open cmd in app folder and run 🚀 `git pull`
 
 ### ⚠️ Important Note
 
