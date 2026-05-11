@@ -74,5 +74,8 @@ This project uses the following open-source libraries:
 
 Special thanks to the open-source community.
 
+### MIT License
+TonLikeIT 2026
+
 
 
