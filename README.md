@@ -60,10 +60,10 @@
 
 
 
-📧 Contact the developer.: \[[Facebook](https://www.facebook.com/tonlikeit)] TonLikeIT. ❤️
+## 📧 Contact the developer.: \[[Facebook](https://www.facebook.com/tonlikeit)] TonLikeIT. ❤️
 
 
-## Credits
+### Credits
 
 This project uses the following open-source libraries:
 
