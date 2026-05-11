@@ -62,9 +62,17 @@
 
 📧 Contact the developer.: \[[Facebook](https://www.facebook.com/tonlikeit)] TonLikeIT. ❤️
 
-## license from official 👇
 
-Credit from official sourcecode ❤️ https://github.com/openai/whisper?tab=MIT-1-ov-file
+## Credits
+
+This project uses the following open-source libraries:
+
+- Faster-Whisper
+- Whisper by OpenAI
+- FastAPI
+- deep-translator
+
+Special thanks to the open-source community.
 
 
 
