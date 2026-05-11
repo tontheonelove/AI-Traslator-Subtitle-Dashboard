@@ -64,7 +64,7 @@
 
 ## License
 
-[Apache License 2.0](./LICENSE)
+Credit from official sourcecode ❤️ https://github.com/openai/whisper?tab=MIT-1-ov-file
 
 
 
