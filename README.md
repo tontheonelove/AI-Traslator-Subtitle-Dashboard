@@ -62,7 +62,7 @@
 
 📧 Contact the developer.: \[[Facebook](https://www.facebook.com/tonlikeit)] TonLikeIT. ❤️
 
-## License
+## license from official 👇
 
 Credit from official sourcecode ❤️ https://github.com/openai/whisper?tab=MIT-1-ov-file
 
