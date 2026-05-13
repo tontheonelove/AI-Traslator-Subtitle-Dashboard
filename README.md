@@ -1,9 +1,12 @@
 # AI-Traslator-Subtitle-Dashboard
 
-<img width="1815" height="1228" alt="image" src="https://github.com/user-attachments/assets/6e51c8c7-450a-493e-8eec-7fea113ff36b" />
+<img width="1156" height="840" alt="image" src="https://github.com/user-attachments/assets/c1135862-e9cc-4c49-a0b0-a0c15c034609" />
 
 
 
+### 🔥 Update version 2.3  
+- Support translator form link ,YouTube, Vimeo, SoundCloud, Direct link .mp3/.mp4 
+- Toggle Theme Added.
 
 ### 🚀 Update version 2.2  Sound Notification🔥 (9-5-26)
 
