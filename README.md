@@ -20,7 +20,7 @@
 ### How to use locally  
 
 
-1\. เปิด comd แล้วรัน  `git clone https://github.com/tontheonelove/AI-Traslator-Subtitle-Dashboard.git`
+1\. เปิด cmd แล้วรัน  `git clone https://github.com/tontheonelove/AI-Traslator-Subtitle-Dashboard.git`
 
 
 2\. Double-click `run.bat` (the first time it will install automatically. Wait until `Uvicorn running on...`)
