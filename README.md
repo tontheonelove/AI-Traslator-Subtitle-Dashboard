@@ -4,7 +4,7 @@
 
 
 
-### 🔥 Update version 2.3  
+### 🔥 Update version 2.3  (wait for updaing.....)
 - Support translator form link ,YouTube, Vimeo, SoundCloud, Direct link .mp3/.mp4 
 - Toggle Theme Added.
 
