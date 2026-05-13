@@ -5,9 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Subtitle AI Dashboard - Premium</title>
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  
+  <!-- Tailwind Config for Dark Mode -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            dark: {
+              bg: '#0f172a',
+              card: '#1e293b',
+              text: '#f1f5f9',
+              textMuted: '#94a3b8',
+              border: '#334155'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  
   <style>
     body { 
       font-family: 'Prompt', sans-serif; 
@@ -181,12 +203,12 @@
       100% { transform: translateY(-100vh) translateX(50px); }
     }
 
-      /* ✅ แก้ไข Drop Zone Light Mode - ทำให้ข้อความอ่านได้ชัดเจน */
+    /* ✅ แก้ไข Drop Zone Light Mode - ทำให้ข้อความอ่านได้ชัดเจน */
     .drop-zone p,
     .drop-zone span,
     .drop-zone .font-bold,
     .drop-zone .font-semibold {
-      color: #1f2937 !important; /* gray-800 - สีเทาเข้ม */
+      color: #1f2937 !important; /* gray-800 */
     }
     
     .drop-zone .text-white\/80 {
@@ -199,12 +221,64 @@
     
     .drop-zone #file-name,
     .drop-zone #file-size {
-      color: #111827 !important; /* gray-900 - เข้มสุด */
+      color: #111827 !important; /* gray-900 */
     }
     
     /* ไอคอนยังคงเป็นสีขาวเพื่อความสวยงาม */
     .drop-zone svg {
       color: white !important;
+    }
+
+    /* Dark Mode Overrides */
+    .dark body {
+      background: linear-gradient(-45deg, #0f172a, #1e293b, #334155, #1e293b) !important;
+    }
+    .dark .glass-card {
+      background: rgba(30, 41, 59, 0.95);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+    .dark .glass-card-dark {
+      background: rgba(15, 23, 42, 0.9);
+      border-color: rgba(255, 255, 255, 0.05);
+    }
+    .dark .drop-zone {
+      background: linear-gradient(135deg, rgba(30,41,59,0.3) 0%, rgba(30,41,59,0.1) 100%);
+      border-color: rgba(255,255,255,0.2);
+    }
+    .dark .drop-zone:hover, 
+    .dark .drop-zone.drag-over {
+      border-color: rgba(129, 140, 248, 0.6);
+      background: linear-gradient(135deg, rgba(30,41,59,0.5) 0%, rgba(30,41,59,0.2) 100%);
+    }
+    .dark #file-name,
+    .dark #file-size,
+    .dark .text-gray-800 {
+      color: #f1f5f9 !important;
+    }
+    .dark .text-gray-600,
+    .dark .text-gray-700,
+    .dark #status-text,
+    .dark #progress-text,
+    .dark #srt-info {
+      color: #94a3b8 !important;
+    }
+    .dark .bg-gray-50 {
+      background: rgba(30, 41, 59, 0.5) !important;
+    }
+    .dark .bg-white {
+      background: rgba(30, 41, 59, 0.8) !important;
+    }
+    .dark .border-gray-200 {
+      border-color: rgba(255, 255, 255, 0.1) !important;
+    }
+    .dark footer p {
+      color: rgba(255, 255, 255, 0.5) !important;
+    }
+    .dark .btn-primary {
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    }
+    .dark .btn-primary:hover {
+      box-shadow: 0 10px 30px rgba(79, 70, 229, 0.4);
     }
   </style>
 </head>
@@ -213,7 +287,6 @@
   <div id="particles" class="absolute inset-0 pointer-events-none overflow-hidden"></div>
 
   <!-- Header -->
-    <!-- Header -->
   <header class="glass-card-dark relative z-10 slide-up">
     <div class="max-w-5xl mx-auto px-4 py-6 flex items-center justify-between">
       <div class="flex items-center gap-4">
@@ -221,15 +294,19 @@
           S
         </div>
         <div>
-          <h1 class="text-2xl font-bold text-white">Subtitle AI Dashboard</h1>
-          <p class="text-indigo-200 text-sm">Professional Speech-to-Text Translation</p>
+          <h1 class="text-2xl font-bold text-white dark:text-dark-text">Subtitle AI Dashboard</h1>
+          <p class="text-indigo-200 text-sm dark:text-dark-textMuted">Professional Speech-to-Text Translation</p>
         </div>
       </div>
       <div class="flex items-center gap-3">
+        <!-- Dark Mode Toggle -->
+        <button id="theme-toggle" class="p-2 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 transition-all" title="สลับธีม">
+          <span id="theme-icon" class="text-xl">🌙</span>
+        </button>
         <div class="bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20">
-          <span class="text-white text-sm flex items-center gap-2">
+          <span class="text-white text-sm flex items-center gap-2 dark:text-dark-text">
             <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-            v2.2 (9-5-26) 🚀
+            v2.3 Full Feature
           </span>
         </div>
       </div>
@@ -241,18 +318,30 @@
     <div class="glass-card rounded-3xl shadow-2xl p-8 md:p-12 hover-lift slide-up" style="animation-delay: 0.1s">
       
       <!-- Title Section -->
-      <div class="text-center mb-10">
+      <div class="text-center mb-8">
         <h2 class="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-3">
-          อัปโหลดไฟล์เสียง/วิดีโอ
+          Subtitle AI Generator
         </h2>
-        <p class="text-gray-600 text-lg">แปลงเสียงเป็นซับไทยอัตโนมัติ • รองรับ 100+ ภาษา</p>
+        <!-- ✅ แก้ไขสีข้อความให้เป็นเทาเข้มใน Light Mode -->
+        <p class="text-gray-600 dark:text-gray-300 text-lg">แปลงเสียง/วิดีโอ เป็นซับไทยอัตโนมัติ • รองรับ YouTube & ไฟล์</p>
+      </div>
+
+      <!-- Tabs (File vs URL) -->
+      <div class="flex justify-center mb-8 space-x-4 slide-up" style="animation-delay: 0.1s">
+        <button id="tab-file" class="px-6 py-2 rounded-full font-semibold transition-all bg-indigo-600 text-white shadow-lg transform scale-105" onclick="switchTab('file')">
+          📁 อัปโหลดไฟล์
+        </button>
+        <button id="tab-url" class="px-6 py-2 rounded-full font-semibold transition-all bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200" onclick="switchTab('url')">
+          🔗 ใส่ลิงก์ (YouTube/MP3)
+        </button>
       </div>
 
       <!-- Language Selector -->
       <div class="mb-6 slide-up" style="animation-delay: 0.15s">
-        <label class="block text-gray-700 font-semibold mb-3 text-lg">🌍 เลือกภาษาต้นฉบับ</label>
+        <!-- ✅ แก้ไขสี Label ให้เป็นเทาเข้มใน Light Mode -->
+        <label class="block text-gray-700 dark:text-gray-200 font-semibold mb-3 text-lg">🌍 เลือกภาษาต้นฉบับ</label>
         <div class="relative">
-          <select id="lang-select" class="w-full p-4 bg-white border-2 border-gray-200 rounded-2xl text-gray-700 font-medium focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 transition cursor-pointer appearance-none">
+          <select id="lang-select" class="w-full p-4 bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-600 rounded-2xl text-gray-700 dark:text-gray-200 font-medium focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 transition cursor-pointer appearance-none">
             <option value="auto"> ตรวจจับอัตโนมัติ (แนะนำ • แม่นยำสุด)</option>
             <option value="en">🇬🇧 อังกฤษ (English)</option>
             <option value="ko">🇰🇷 เกาหลี (Korean)</option>
@@ -263,43 +352,54 @@
             <option value="es">🇪🇸 สเปน (Spanish)</option>
             <option value="th">🇹🇭 ไทย (ถอดความอย่างเดียว ไม่แปล)</option>
           </select>
-          <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-500">
+          <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-500 dark:text-gray-400">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </div>
         </div>
-        <p class="text-xs text-gray-500 mt-2">💡 หากไม่แน่ใจภาษา ให้เลือก "ตรวจจับอัตโนมัติ" AI จะวิเคราะห์เสียงให้เอง</p>
+        <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">💡 หากไม่แน่ใจภาษา ให้เลือก "ตรวจจับอัตโนมัติ"</p>
       </div>
 
-      <!-- Upload Area -->
-      <div id="drop-zone" class="drop-zone rounded-3xl p-12 text-center relative overflow-hidden cursor-pointer mb-8">
-        <input type="file" id="file-input" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-20" accept=".mp3,.wav,.mp4,.mkv,.flac,.m4a,.ogg,.webm">
-        
-        <!-- Shimmer Effect -->
-        <div class="shimmer absolute inset-0 pointer-events-none"></div>
+      <!-- Upload Area (Default) -->
+      <div id="upload-section" class="slide-up">
+        <div id="drop-zone" class="drop-zone rounded-3xl p-12 text-center relative overflow-hidden cursor-pointer mb-8">
+          <input type="file" id="file-input" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-20" accept=".mp3,.wav,.mp4,.mkv,.flac,.m4a,.ogg,.webm">
+          
+          <div class="shimmer absolute inset-0 pointer-events-none"></div>
 
-        <div id="upload-placeholder" class="relative z-10 floating">
-          <div class="w-24 h-24 mx-auto mb-6 bg-gradient-to-br from-indigo-400 to-purple-600 rounded-3xl flex items-center justify-center shadow-xl">
-            <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m0 0l3-3"/>
-            </svg>
-          </div>
-          <p class="text-2xl font-bold text-white mb-2">ลากไฟล์มาวางที่นี่</p>
-          <p class="text-white/80 mb-4">หรือ <span class="text-white font-semibold underline">คลิกเพื่อเลือกไฟล์</span></p>
-          <p class="text-sm text-white/60 bg-white/10 inline-block px-4 py-2 rounded-full">ขนาดแนะนำ: &lt; 500MB</p>
-        </div>
-
-        <div id="file-info" class="hidden relative z-10 scale-in">
-          <div class="flex items-center justify-center gap-4 text-white">
-            <div class="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-600 rounded-2xl flex items-center justify-center shadow-lg">
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+          <div id="upload-placeholder" class="relative z-10 floating">
+            <div class="w-24 h-24 mx-auto mb-6 bg-gradient-to-br from-indigo-400 to-purple-600 rounded-3xl flex items-center justify-center shadow-xl">
+              <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m0 0l3-3"/>
               </svg>
             </div>
-            <div class="text-left">
-              <p id="file-name" class="text-xl font-bold"></p>
-              <p id="file-size" class="text-white/70"></p>
+            <p class="text-2xl font-bold text-white mb-2">ลากไฟล์มาวางที่นี่</p>
+            <p class="text-white/80 mb-4">หรือ <span class="text-white font-semibold underline">คลิกเพื่อเลือกไฟล์</span></p>
+            <p class="text-sm text-white/60 bg-white/10 inline-block px-4 py-2 rounded-full">ขนาดแนะนำ: &lt; 500MB</p>
+          </div>
+
+          <div id="file-info" class="hidden relative z-10 scale-in">
+            <div class="flex items-center justify-center gap-4 text-white">
+              <div class="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-600 rounded-2xl flex items-center justify-center shadow-lg">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                </svg>
+              </div>
+              <div class="text-left">
+                <p id="file-name" class="text-xl font-bold"></p>
+                <p id="file-size" class="text-white/70"></p>
+              </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      <!-- URL Input Area (Hidden by default) -->
+      <div id="url-section" class="hidden slide-up">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 border-2 border-gray-200 dark:border-gray-600 mb-8 shadow-inner">
+          <label class="block text-gray-700 dark:text-gray-200 font-semibold mb-2">🔗 วางลิงก์ YouTube หรือไฟล์สื่อ</label>
+          <input type="text" id="url-input" placeholder="https://www.youtube.com/watch?v=..." 
+                 class="w-full p-4 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-700 dark:text-gray-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition">
+          <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">รองรับ: YouTube, Vimeo, SoundCloud, และลิงก์ตรง .mp3/.mp4</p>
         </div>
       </div>
 
@@ -362,18 +462,19 @@
     <div class="grid md:grid-cols-3 gap-6 mt-8 slide-up" style="animation-delay: 0.2s">
       <div class="glass-card rounded-2xl p-6 text-center hover-lift">
         <div class="w-14 h-14 bg-gradient-to-br from-blue-400 to-indigo-600 rounded-2xl flex items-center justify-center text-white text-2xl mx-auto mb-4 shadow-lg">⚡</div>
-        <h3 class="text-gray-800 font-bold text-lg mb-2">รวดเร็ว</h3>
-        <p class="text-gray-600 text-sm">ประมวลผลด้วย GPU และ AI ระดับโลก</p>
+        <!-- ✅ แก้ไขสีหัวข้อและคำอธิบายให้ชัดเจนใน Light Mode -->
+        <h3 class="text-gray-800 dark:text-gray-200 font-bold text-lg mb-2">รวดเร็ว</h3>
+        <p class="text-gray-600 dark:text-gray-400 text-sm">ประมวลผลด้วย GPU และ AI ระดับโลก</p>
       </div>
       <div class="glass-card rounded-2xl p-6 text-center hover-lift">
         <div class="w-14 h-14 bg-gradient-to-br from-purple-400 to-pink-600 rounded-2xl flex items-center justify-center text-white text-2xl mx-auto mb-4 shadow-lg">🎯</div>
-        <h3 class="text-gray-800 font-bold text-lg mb-2">แม่นยำ</h3>
-        <p class="text-gray-600 text-sm">ความถูกต้องสูงด้วย Whisper AI</p>
+        <h3 class="text-gray-800 dark:text-gray-200 font-bold text-lg mb-2">แม่นยำ</h3>
+        <p class="text-gray-600 dark:text-gray-400 text-sm">ความถูกต้องสูงด้วย Whisper AI</p>
       </div>
       <div class="glass-card rounded-2xl p-6 text-center hover-lift">
         <div class="w-14 h-14 bg-gradient-to-br from-green-400 to-emerald-600 rounded-2xl flex items-center justify-center text-white text-2xl mx-auto mb-4 shadow-lg">🔒</div>
-        <h3 class="text-gray-800 font-bold text-lg mb-2">ปลอดภัย</h3>
-        <p class="text-gray-600 text-sm">ไฟล์ถูกลบอัตโนมัติหลังประมวลผล</p>
+        <h3 class="text-gray-800 dark:text-gray-200 font-bold text-lg mb-2">ปลอดภัย</h3>
+        <p class="text-gray-600 dark:text-gray-400 text-sm">ไฟล์ถูกลบอัตโนมัติหลังประมวลผล</p>
       </div>
     </div>
   </main>
@@ -385,31 +486,26 @@
   </footer>
 
   <script>
-
+    // ✅ Sound Alert (Web Audio API)
     function playSuccessSound() {
       try {
         const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        if (ctx.state === 'suspended') ctx.resume();
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
-        
         osc.connect(gain);
         gain.connect(ctx.destination);
-        
         osc.type = 'sine';
-        osc.frequency.setValueAtTime(880, ctx.currentTime); // ความถี่ 880Hz (เสียงสูงใส)
-        osc.frequency.exponentialRampToValueAtTime(440, ctx.currentTime + 0.15); // ไหลลง 440Hz
-        
+        osc.frequency.setValueAtTime(880, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(440, ctx.currentTime + 0.15);
         gain.gain.setValueAtTime(0.3, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3); // ค่อยๆ จาง
-        
+        gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3);
         osc.start();
         osc.stop(ctx.currentTime + 0.3);
-      } catch (e) {
-        console.log('🔇 Sound disabled:', e);
-      }
+      } catch (e) { console.log('🔇 Sound disabled:', e); }
     }
 
-    // Create floating particles
+    // ✅ Create Particles
     function createParticles() {
       const container = document.getElementById('particles');
       for (let i = 0; i < 20; i++) {
@@ -426,13 +522,20 @@
     }
     createParticles();
 
-    // DOM Elements
+    // ✅ DOM Elements
     const fileInput = document.getElementById('file-input');
     const dropZone = document.getElementById('drop-zone');
     const uploadPlaceholder = document.getElementById('upload-placeholder');
     const fileInfo = document.getElementById('file-info');
     const fileName = document.getElementById('file-name');
     const fileSize = document.getElementById('file-size');
+    
+    const tabFile = document.getElementById('tab-file');
+    const tabUrl = document.getElementById('tab-url');
+    const uploadSection = document.getElementById('upload-section');
+    const urlSection = document.getElementById('url-section');
+    const urlInput = document.getElementById('url-input');
+    
     const processBtn = document.getElementById('process-btn');
     const btnText = document.getElementById('btn-text');
     const btnIcon = document.getElementById('btn-icon');
@@ -445,20 +548,71 @@
     const downloadBtn = document.getElementById('download-btn');
     const srtInfo = document.getElementById('srt-info');
     const langSelect = document.getElementById('lang-select');
+    
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
 
     let selectedFile = null;
+    let currentMode = 'file'; // 'file' or 'url'
 
+    // ✅ Dark Mode Logic
+    const savedTheme = localStorage.getItem('subtitle-theme');
+    if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+      themeIcon.textContent = '☀️';
+    }
+    
+    function toggleTheme() {
+      const isDark = document.documentElement.classList.toggle('dark');
+      themeIcon.textContent = isDark ? '☀️' : '🌙';
+      localStorage.setItem('subtitle-theme', isDark ? 'dark' : 'light');
+      
+      if (isDark) {
+        document.body.style.background = 'linear-gradient(-45deg, #0f172a, #1e293b, #334155, #1e293b)';
+      } else {
+        document.body.style.background = 'linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab)';
+      }
+    }
+    
+    themeToggle.addEventListener('click', toggleTheme);
+
+    // ✅ Tab Switching Logic
+    function switchTab(mode) {
+      currentMode = mode;
+      if (mode === 'file') {
+        tabFile.classList.replace('bg-gray-200', 'bg-indigo-600');
+        tabFile.classList.replace('text-gray-700', 'text-white');
+        tabFile.classList.add('shadow-lg', 'transform', 'scale-105');
+        
+        tabUrl.classList.replace('bg-indigo-600', 'bg-gray-200');
+        tabUrl.classList.replace('text-white', 'text-gray-700');
+        tabUrl.classList.remove('shadow-lg', 'transform', 'scale-105');
+        
+        uploadSection.classList.remove('hidden');
+        urlSection.classList.add('hidden');
+        processBtn.disabled = !selectedFile;
+      } else {
+        tabUrl.classList.replace('bg-gray-200', 'bg-indigo-600');
+        tabUrl.classList.replace('text-gray-700', 'text-white');
+        tabUrl.classList.add('shadow-lg', 'transform', 'scale-105');
+        
+        tabFile.classList.replace('bg-indigo-600', 'bg-gray-200');
+        tabFile.classList.replace('text-white', 'text-gray-700');
+        tabFile.classList.remove('shadow-lg', 'transform', 'scale-105');
+        
+        uploadSection.classList.add('hidden');
+        urlSection.classList.remove('hidden');
+        processBtn.disabled = !urlInput.value.trim();
+      }
+      // Reset UI states
+      downloadArea.classList.add('hidden');
+      statusArea.classList.add('hidden');
+    }
+
+    // ✅ File Handling
     fileInput.addEventListener('change', (e) => handleFile(e.target.files[0]));
-
-    dropZone.addEventListener('dragover', (e) => { 
-      e.preventDefault(); 
-      dropZone.classList.add('drag-over'); 
-    });
-    
-    dropZone.addEventListener('dragleave', () => {
-      dropZone.classList.remove('drag-over');
-    });
-    
+    dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+    dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
     dropZone.addEventListener('drop', (e) => {
       e.preventDefault();
       dropZone.classList.remove('drag-over');
@@ -475,31 +629,51 @@
       processBtn.disabled = false;
       downloadArea.classList.add('hidden');
       statusArea.classList.add('hidden');
+      if (currentMode !== 'file') switchTab('file');
     }
 
+    // ✅ URL Input Handling
+    urlInput.addEventListener('input', () => {
+      if (currentMode === 'url') {
+        processBtn.disabled = !urlInput.value.trim();
+      }
+    });
+
+    // ✅ Progress Helper
     function updateProgress(percent) {
       progressFill.style.width = percent + '%';
       progressText.textContent = Math.round(percent) + '%';
     }
 
+    // ✅ Main Process Logic
     processBtn.addEventListener('click', async () => {
-      if (!selectedFile) return;
+      if (currentMode === 'file' && !selectedFile) return;
+      if (currentMode === 'url' && !urlInput.value.trim()) return;
       
       processBtn.disabled = true;
-      btnText.textContent = 'กำลังประมวลผล...';
+      btnText.textContent = currentMode === 'file' ? 'กำลังประมวลผล...' : 'กำลังดาวน์โหลดและประมวลผล...';
       btnIcon.classList.add('animate-spin');
       statusArea.classList.remove('hidden');
       downloadArea.classList.add('hidden');
       updateProgress(0);
 
       const formData = new FormData();
-      formData.append('file', selectedFile);
-      formData.append('source_lang', langSelect.value); // ✅ เพิ่มภาษาที่เลือก
+      formData.append('source_lang', langSelect.value);
+
+      let API_URL = `${window.location.origin}/transcribe`;
+      
+      if (currentMode === 'file') {
+        formData.append('file', selectedFile);
+      } else {
+        formData.append('url', urlInput.value.trim());
+        API_URL = `${window.location.origin}/transcribe-url`;
+      }
 
       try {
-        const API_URL = `${window.location.origin}/transcribe`;
         const langName = langSelect.selectedOptions[0].text;
-        statusText.textContent = ` กำลังถอดความ & แปลภาษา (${langName} → ไทย)...`;
+        statusText.textContent = currentMode === 'file' 
+          ? `⏳ กำลังถอดความ & แปลภาษา (${langName} → ไทย)...`
+          : `📥 กำลังดาวน์โหลดจากลิงก์... (${langName} → ไทย)`;
         updateProgress(15);
 
         const response = await fetch(API_URL, { method: 'POST', body: formData });
@@ -511,13 +685,20 @@
 
         updateProgress(90);
         statusText.textContent = '✅ เสร็จสิ้น! กำลังเตรียมไฟล์...';
-        playSuccessSound(); // ✅ Sound Alert
+        playSuccessSound();
         
         const blob = await response.blob();
         const url = URL.createObjectURL(blob);
         downloadBtn.href = url;
-        downloadBtn.download = selectedFile.name.replace(/\.[^/.]+$/, '') + '_TH.srt';
-        srtInfo.textContent = `${selectedFile.name} • แปลจาก ${langName.split('(')[1]?.replace(')', '') || 'ต้นฉบับ'} เป็นไทย`;
+        
+        const fileNameBase = currentMode === 'file' 
+          ? selectedFile.name.replace(/\.[^/.]+$/, '') 
+          : 'subtitle_from_url';
+          
+        downloadBtn.download = `${fileNameBase}_TH.srt`;
+        srtInfo.textContent = currentMode === 'file'
+          ? `${selectedFile.name} • แปลจาก ${langName.split('(')[1]?.replace(')', '') || 'ต้นฉบับ'} เป็นไทย`
+          : `YouTube/URL • แปลจาก ${langName.split('(')[1]?.replace(')', '') || 'ต้นฉบับ'} เป็นไทย`;
         
         updateProgress(100);
         setTimeout(() => {

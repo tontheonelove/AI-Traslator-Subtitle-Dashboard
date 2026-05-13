@@ -4,3 +4,4 @@ python-multipart>=0.0.9
 faster-whisper>=1.0.0
 deep-translator>=1.11.0
 torch>=2.2.0
+yt-dlp>=2024.5.27
