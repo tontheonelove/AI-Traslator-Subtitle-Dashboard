@@ -19,44 +19,33 @@
 
 ### How to use locally  
 
-
-1\. เปิด cmd แล้วรัน  `git clone https://github.com/tontheonelove/AI-Traslator-Subtitle-Dashboard.git`
-
-
-2\. Double-click `run.bat` (the first time it will install automatically. Wait until `Uvicorn running on...`)
+1. เปิด cmd แล้วรัน  `git clone https://github.com/tontheonelove/AI-Traslator-Subtitle-Dashboard.git`
 
 
-3\. Open your browser and type `http://localhost:8000`
+2. Double-click `run.bat` (the first time it will install automatically. Wait until `Uvicorn running on...`)
 
 
-4\. Drag and drop the audio/video file → Click "Start creating subtitles" → Download `.srt`
+3. Open your browser and type `http://localhost:8000`
+
+
+4. Drag and drop the audio/video file → Click "Start creating subtitles" → Download `.srt`
 
 
 
-\## ⚠️ Important Note
+## ⚠️ Important Note
 
-
-\- An internet connection is required at all times for use (online translation system).
-
-
-\- An NVIDIA graphics card is recommended, but it can also run on the CPU (slightly slower).
-
-
-\- The files will be automatically deleted after processing is complete. 100% safe.
+- An internet connection is required at all times for use (online translation system).
+- An NVIDIA graphics card is recommended, but it can also run on the CPU (slightly slower).
+- The files will be automatically deleted after processing is complete. 100% safe.
 
 
 
 
-\## 🛠️ If you encounter any problems.
+## 🛠️ If you encounter any problems.
 
-
-\- Web page not loading: Check if other programs using Port 8000 are closed.
-
-
-\- CUDA Error: The system will automatically switch CPUs. Don't worry.
-
-
-\- Unable to translate: Check your internet connection or try a shorter file (3-5 minutes) first.
+- Web page not loading: Check if other programs using Port 8000 are closed.
+- CUDA Error: The system will automatically switch CPUs. Don't worry.
+- Unable to translate: Check your internet connection or try a shorter file (3-5 minutes) first.
 
 
 
