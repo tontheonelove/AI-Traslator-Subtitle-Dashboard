@@ -19,7 +19,6 @@
 > Internet
 
 
-
 ### How to use locally  
 
 1. เปิด cmd แล้วรัน  `git clone https://github.com/tontheonelove/AI-Traslator-Subtitle-Dashboard.git`
@@ -32,6 +31,18 @@
 
 
 4. Drag and drop the audio/video file → Click "Start creating subtitles" → Download `.srt`
+
+
+## Update method for Translator from URL  , support youtube and more...
+
+## ⚙️ How to 
+
+1. Download FFmpeg for Windows from: [https://www.gyan.dev/ffmpeg/builds/](https://www.gyan.dev/ffmpeg/builds/)
+   - choose  **`ffmpeg-release-essentials.zip`**
+2. extract Zip 
+3. Copy `ffmpeg.exe`, `ffprobe.exe`, and `ffplay.exe` 
+4. past file into root project folder same `run.bat` and `main.py`
+5. start (`run.bat`)
 
 
 
